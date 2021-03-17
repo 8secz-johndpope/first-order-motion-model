@@ -1,0 +1,1 @@
+Download train & test datasets from VoxCeleb here. Link to preprocess dataset: https://github.com/Trumping-Obama/video-preprocessing
