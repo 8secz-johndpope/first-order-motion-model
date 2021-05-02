@@ -3,7 +3,7 @@ from unit_tests import generator_test, keypoint_test
 print("Tests for KeypointDetector")
 kp = keypoint_test.KeypointTest()
 
-def test_keypoint():
+def test_keypoints():
     kp.test()
 
 print("Tests for OcclusionAwareGenerator")

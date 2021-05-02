@@ -13,8 +13,16 @@ class KeypointTest():
                              self.MAX_FEATURES, self.NUM_BLOCKS, self.TEMP, True)
 
     def test(self):
+        # output test 1
         _in = torch.zeros(self.NUM_KP, self.NUM_CHANNELS, self.MAX_FEATURES, self.MAX_FEATURES) # input 
         _out = self.kp.forward(_in) # run
 
         shape = (self.NUM_KP, self.NUM_KP, 2, 2) # expected output shape
+        assert _out['jacobian'].size() == shape, "output shape is incorrect"
+
+        # output test 2
+        _in = torch.zeros(20, self.NUM_CHANNELS, self.MAX_FEATURES, self.MAX_FEATURES) # input 
+        _out = self.kp.forward(_in) # run
+
+        shape = (20, self.NUM_KP, 2, 2) # expected output shape
         assert _out['jacobian'].size() == shape, "output shape is incorrect"
