@@ -12,7 +12,7 @@ class KeypointTest():
         self.kp = KPDetector(self.BLOCK_EXPANSION, self.NUM_KP, self.NUM_CHANNELS,\
                              self.MAX_FEATURES, self.NUM_BLOCKS, self.TEMP, True)
 
-    def test(self):
+    def test_output_shape(self):
         # output test 1
         _in = torch.zeros(self.NUM_KP, self.NUM_CHANNELS, self.MAX_FEATURES, self.MAX_FEATURES) # input 
         _out = self.kp.forward(_in) # run
@@ -26,3 +26,4 @@ class KeypointTest():
 
         shape = (20, self.NUM_KP, 2, 2) # expected output shape
         assert _out['jacobian'].size() == shape, "output shape is incorrect"
+
