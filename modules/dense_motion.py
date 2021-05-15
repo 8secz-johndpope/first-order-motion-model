@@ -12,9 +12,11 @@ class DenseMotionNetwork(nn.Module):
     def __init__(self, block_expansion, num_blocks, max_features, num_kp, num_channels, estimate_occlusion_map=False,
                  scale_factor=1, kp_variance=0.01):
         super(DenseMotionNetwork, self).__init__()
+        # generate u-net
         self.hourglass = Hourglass(block_expansion=block_expansion, in_features=(num_kp + 1) * (num_channels + 1),
                                    max_features=max_features, num_blocks=num_blocks)
 
+        # generate occlusion mask
         self.mask = nn.Conv2d(self.hourglass.out_filters, num_kp + 1, kernel_size=(7, 7), padding=(3, 3))
 
         if estimate_occlusion_map:
@@ -22,7 +24,7 @@ class DenseMotionNetwork(nn.Module):
         else:
             self.occlusion = None
 
-        self.num_kp = num_kp
+        self.num_kp = num_kp # number of keypoints
         self.scale_factor = scale_factor
         self.kp_variance = kp_variance
 
