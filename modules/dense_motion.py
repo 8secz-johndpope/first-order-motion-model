@@ -1,14 +1,11 @@
+# import necessary libraries
 from torch import nn
 import torch.nn.functional as F
 import torch
 from modules.util import Hourglass, AntiAliasInterpolation2d, make_coordinate_grid, kp2gaussian
 
-
 class DenseMotionNetwork(nn.Module):
-    """
-    Module that predicting a dense motion from sparse motion representation given by kp_source and kp_driving
-    """
-
+    # Module that predicts a dense motion from sparse motion representation given by kp_source and kp_driving
     def __init__(self, block_expansion, num_blocks, max_features, num_kp, num_channels, estimate_occlusion_map=False,
                  scale_factor=1, kp_variance=0.01):
         super(DenseMotionNetwork, self).__init__()
@@ -19,26 +16,25 @@ class DenseMotionNetwork(nn.Module):
         # generate occlusion mask
         self.mask = nn.Conv2d(self.hourglass.out_filters, num_kp + 1, kernel_size=(7, 7), padding=(3, 3))
 
-        if estimate_occlusion_map:
+        if estimate_occlusion_map: # add conv layer for occlusion map
             self.occlusion = nn.Conv2d(self.hourglass.out_filters, 1, kernel_size=(7, 7), padding=(3, 3))
         else:
             self.occlusion = None
 
         self.num_kp = num_kp # number of keypoints
-        self.scale_factor = scale_factor
+        self.scale_factor = scale_factor 
         self.kp_variance = kp_variance
 
         if self.scale_factor != 1:
-            self.down = AntiAliasInterpolation2d(num_channels, self.scale_factor)
+            self.down = AntiAliasInterpolation2d(num_channels, self.scale_factor) # antialiasing
 
     def create_heatmap_representations(self, source_image, kp_driving, kp_source):
-        """
-        Eq 6. in the paper H_k(z)
-        """
+        # Eq 6. in the paper H_k(z)
         spatial_size = source_image.shape[2:]
+        # generate bottleneck layers
         gaussian_driving = kp2gaussian(kp_driving, spatial_size=spatial_size, kp_variance=self.kp_variance)
         gaussian_source = kp2gaussian(kp_source, spatial_size=spatial_size, kp_variance=self.kp_variance)
-        heatmap = gaussian_driving - gaussian_source
+        heatmap = gaussian_driving - gaussian_source # create heatmap
 
         #adding background feature
         zeros = torch.zeros(heatmap.shape[0], 1, spatial_size[0], spatial_size[1]).type(heatmap.type())
@@ -47,9 +43,7 @@ class DenseMotionNetwork(nn.Module):
         return heatmap
 
     def create_sparse_motions(self, source_image, kp_driving, kp_source):
-        """
-        Eq 4. in the paper T_{s<-d}(z)
-        """
+        # Eq 4. in the paper T_{s<-d}(z) for Taylor's series
         bs, _, h, w = source_image.shape
         identity_grid = make_coordinate_grid((h, w), type=kp_source['value'].type())
         identity_grid = identity_grid.view(1, 1, h, w, 2)
