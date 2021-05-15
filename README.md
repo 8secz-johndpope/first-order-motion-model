@@ -8,11 +8,6 @@ The videos on the left show the driving videos. The first row on the right for e
 
 ### VoxCeleb Dataset
 ![Screenshot](sup-mat/vox-teaser.gif)
-### Fashion Dataset
-![Screenshot](sup-mat/fashion-teaser.gif)
-### MGIF Dataset
-![Screenshot](sup-mat/mgif-teaser.gif)
-
 
 ### Installation
 
@@ -134,18 +129,8 @@ that the object in the first frame of the video and in the source image have the
 
 
 ### Datasets
-
-1) **Bair**. This dataset can be directly [downloaded](https://yadi.sk/d/Rr-fjn-PdmmqeA).
-
-2) **Mgif**. This dataset can be directly [downloaded](https://yadi.sk/d/5VdqLARizmnj3Q).
-
-3) **Fashion**. Follow the instruction on dataset downloading [from](https://vision.cs.ubc.ca/datasets/fashion/).
-
-4) **Taichi**. Follow the instructions in [data/taichi-loading](data/taichi-loading/README.md) or instructions from https://github.com/AliaksandrSiarohin/video-preprocessing. 
-
-5) **Nemo**. Please follow the [instructions](https://www.uva-nemo.org/) on how to download the dataset. Then the dataset should be preprocessed using scripts from https://github.com/AliaksandrSiarohin/video-preprocessing.
  
-6) **VoxCeleb**. Please follow the instruction from https://github.com/AliaksandrSiarohin/video-preprocessing.
+**VoxCeleb**. Please follow the instruction from https://github.com/AliaksandrSiarohin/video-preprocessing.
 
 
 ### Training on your own dataset
