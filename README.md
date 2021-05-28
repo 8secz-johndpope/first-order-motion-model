@@ -69,13 +69,7 @@ docker run -it --rm --gpus all \
 
 ### Colab Demo 
 We have prepared a special Google Colab demo, see: [demo](https://github.com/Trumping-Obama/demo)
-
-### Face-swap
-It is possible to modify the method to perform face-swap using supervised segmentation masks.
-![Screenshot](sup-mat/face-swap.gif)
-For both unsupervised and supervised video editing, such as face-swap, please refer to [Motion Co-Segmentation](https://github.com/AliaksandrSiarohin/motion-cosegmentation).
-
-
+  
 ### Training
 
 To train a model on specific dataset run:
