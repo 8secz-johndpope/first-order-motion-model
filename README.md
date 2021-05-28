@@ -22,7 +22,7 @@ There are several configuration (```config/dataset_name.yaml```) files one for e
 
 
 ### Pre-trained checkpoint
-Checkpoints can be found under following link: [google-drive](https://drive.google.com/open?id=1PyQJmkdCsAkOYwUyaj_l-l0as-iLDgeH) or [yandex-disk](https://yadi.sk/d/lEw8uRm140L_eQ).
+Checkpoints can be found under following link: [google-drive](https://drive.google.com/drive/folders/1Me9GpHZUXy30EhJo0gM_W1aK6rcnXBuT?usp=sharing).
 
 ### Animation Demo
 To run a demo, download checkpoint and run the following command:
@@ -68,7 +68,7 @@ docker run -it --rm --gpus all \
 ```
 
 ### Colab Demo 
-We prepare a special demo for the google-colab, see: ```demo-colab.ipynb```.
+We have prepared a special Google Colab demo, see: [demo](https://github.com/Trumping-Obama/demo)
 
 ### Face-swap
 It is possible to modify the method to perform face-swap using supervised segmentation masks.
