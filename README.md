@@ -97,7 +97,7 @@ CUDA_VISIBLE_DEVICES=0 python run.py --config config/dataset_name.yaml --mode re
 You will need to specify the path to the checkpoint,
 the ```reconstruction``` subfolder will be created in the checkpoint folder.
 The generated video will be stored to this folder, also generated videos will be stored in ```png``` subfolder in loss-less '.png' format for evaluation.
-Instructions for computing metrics from the paper can be found: https://github.com/AliaksandrSiarohin/pose-evaluation.
+Instructions for computing metrics from the paper can be found: https://github.com/Trumping-Obama/pose-evaluation.
 
 ### Image animation
 
@@ -130,7 +130,7 @@ that the object in the first frame of the video and in the source image have the
 
 ### Datasets
  
-**VoxCeleb**. Please follow the instruction from https://github.com/AliaksandrSiarohin/video-preprocessing.
+**VoxCeleb**. Please follow the instruction from https://github.com/Trumping-Obama/video-preprocessing.
 
 
 ### Training on your own dataset
